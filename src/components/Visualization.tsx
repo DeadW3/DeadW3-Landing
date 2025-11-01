@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useMemo } from 'react';
-import StealYourFace from './StealYourFace';
 
 export default function Visualization() {
   const ref = useRef(null);
@@ -88,7 +87,7 @@ export default function Visualization() {
               }}
             />
 
-            {/* Steal Your Face logo */}
+            {/* Grateful Dead logo */}
             <motion.div
               className="absolute inset-0 flex items-center justify-center"
               animate={{
@@ -100,10 +99,10 @@ export default function Visualization() {
                 ease: "linear",
               }}
             >
-              <StealYourFace
-                className="w-32 h-32 text-white drop-shadow-[0_0_15px_rgba(201,45,37,0.5)]"
-                primaryColor="#c92d25"
-                secondaryColor="#253387"
+              <img
+                src="/Grateful-Dead-Logo.png"
+                alt="Grateful Dead Logo"
+                className="w-32 h-32 object-contain drop-shadow-[0_0_20px_rgba(201,45,37,0.6)]"
               />
             </motion.div>
           </motion.div>
