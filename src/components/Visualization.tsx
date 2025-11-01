@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useMemo } from 'react';
+import StealYourFace from './StealYourFace';
 
 export default function Visualization() {
   const ref = useRef(null);
@@ -43,7 +44,7 @@ export default function Visualization() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl font-mono font-bold text-deadw3-amber mb-4 glow-amber">
+          <h2 className="text-4xl md:text-5xl font-psychedelic font-bold text-gd-red mb-4 glow-gd-red">
             The Archive Lives Forever
           </h2>
           <p className="text-gray-400 text-lg font-light italic max-w-2xl mx-auto">
@@ -53,29 +54,58 @@ export default function Visualization() {
 
         {/* Visualization container */}
         <div className="relative w-full max-w-2xl mx-auto aspect-square">
-          {/* Central vault */}
+          {/* Central vault with Steal Your Face */}
           <motion.div
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 border-4 border-deadw3-purple rounded-lg"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40"
             initial={{ scale: 0, rotate: 0 }}
-            animate={isInView ? { scale: 1, rotate: 45 } : {}}
+            animate={isInView ? { scale: 1, rotate: 0 } : {}}
             transition={{ duration: 1, delay: 0.5 }}
           >
-            {/* Inner glow */}
+            {/* Outer glow ring */}
             <motion.div
-              className="absolute inset-0 bg-gradient-to-br from-deadw3-purple to-deadw3-amber opacity-30 rounded-lg"
+              className="absolute inset-0 rounded-full border-4 border-gd-blue opacity-50"
               animate={{
-                opacity: [0.3, 0.6, 0.3],
+                scale: [1, 1.1, 1],
+                opacity: [0.5, 0.8, 0.5],
               }}
               transition={{
-                duration: 2,
+                duration: 3,
                 repeat: Infinity,
               }}
             />
 
-            {/* Vault icon */}
-            <div className="absolute inset-0 flex items-center justify-center -rotate-45 text-4xl font-mono text-deadw3-amber">
-              ∞
-            </div>
+            {/* Secondary glow ring */}
+            <motion.div
+              className="absolute inset-0 rounded-full border-4 border-gd-red opacity-40"
+              animate={{
+                scale: [1, 1.15, 1],
+                opacity: [0.4, 0.7, 0.4],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                delay: 0.5,
+              }}
+            />
+
+            {/* Steal Your Face logo */}
+            <motion.div
+              className="absolute inset-0 flex items-center justify-center"
+              animate={{
+                rotate: [0, 360],
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            >
+              <StealYourFace
+                className="w-32 h-32 text-white drop-shadow-[0_0_15px_rgba(201,45,37,0.5)]"
+                primaryColor="#c92d25"
+                secondaryColor="#253387"
+              />
+            </motion.div>
           </motion.div>
 
           {/* Network connections */}
@@ -87,7 +117,7 @@ export default function Visualization() {
                 y1={conn.from.y}
                 x2={conn.to.x}
                 y2={conn.to.y}
-                stroke="rgba(107, 70, 193, 0.3)"
+                stroke="rgba(37, 51, 135, 0.4)"
                 strokeWidth="0.2"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
@@ -100,7 +130,7 @@ export default function Visualization() {
               <motion.circle
                 key={`particle-${i}`}
                 r="0.5"
-                fill="#d4a574"
+                fill={i % 2 === 0 ? "#c92d25" : "#253387"}
                 initial={{ opacity: 0 }}
                 animate={
                   isInView
@@ -124,7 +154,9 @@ export default function Visualization() {
           {nodes.map((node) => (
             <motion.div
               key={node.id}
-              className="absolute w-3 h-3 bg-deadw3-amber rounded-full"
+              className={`absolute w-3 h-3 rounded-full ${
+                node.id % 2 === 0 ? 'bg-gd-red' : 'bg-gd-blue'
+              }`}
               style={{
                 left: `${node.x}%`,
                 top: `${node.y}%`,
@@ -136,7 +168,9 @@ export default function Visualization() {
             >
               {/* Node glow */}
               <motion.div
-                className="absolute inset-0 bg-deadw3-amber rounded-full"
+                className={`absolute inset-0 rounded-full ${
+                  node.id % 2 === 0 ? 'bg-gd-red' : 'bg-gd-blue'
+                }`}
                 animate={{
                   scale: [1, 2, 1],
                   opacity: [0.5, 0, 0.5],
@@ -154,7 +188,9 @@ export default function Visualization() {
           {[...Array(8)].map((_, i) => (
             <motion.div
               key={`stream-${i}`}
-              className="absolute w-1 h-20 bg-gradient-to-b from-transparent via-deadw3-purple to-transparent opacity-30"
+              className={`absolute w-1 h-20 bg-gradient-to-b from-transparent to-transparent opacity-30 ${
+                i % 2 === 0 ? 'via-gd-red' : 'via-gd-blue'
+              }`}
               style={{
                 left: `${20 + i * 10}%`,
                 top: '-20%',

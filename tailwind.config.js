@@ -14,10 +14,18 @@ export default {
         'deadw3-blue': '#2d3b5f',
         'deadw3-amber': '#d4a574',
         'deadw3-sepia': '#b8956a',
+        // Grateful Dead colors
+        'gd-blue': '#253387',
+        'gd-red': '#c92d25',
+        'gd-white': '#ffffff',
+        'gd-black': '#000000',
       },
       fontFamily: {
         'mono': ['JetBrains Mono', 'Courier New', 'monospace'],
         'sans': ['Inter', 'system-ui', 'sans-serif'],
+        'psychedelic': ['Righteous', 'sans-serif'],
+        'psychedelic-alt': ['Rubik Mono One', 'sans-serif'],
+        'marker': ['Permanent Marker', 'cursive'],
       },
       animation: {
         'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
