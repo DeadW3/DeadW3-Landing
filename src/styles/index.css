@@ -33,6 +33,18 @@
                  0 0 40px rgba(107, 70, 193, 0.3);
   }
 
+  .glow-gd-red {
+    text-shadow: 0 0 25px rgba(201, 45, 37, 0.6),
+                 0 0 50px rgba(201, 45, 37, 0.4),
+                 0 0 75px rgba(201, 45, 37, 0.2);
+  }
+
+  .glow-gd-blue {
+    text-shadow: 0 0 25px rgba(37, 51, 135, 0.6),
+                 0 0 50px rgba(37, 51, 135, 0.4),
+                 0 0 75px rgba(37, 51, 135, 0.2);
+  }
+
   .backdrop-blur-custom {
     backdrop-filter: blur(12px) saturate(180%);
   }
@@ -52,7 +64,7 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-deadw3-purple;
+  @apply bg-gd-red;
 }
 
 /* Glitch effect utilities */
@@ -72,13 +84,13 @@
 
 .glitch-text::before {
   animation: glitch-anim 2s infinite;
-  color: rgba(212, 165, 116, 0.8);
+  color: rgba(201, 45, 37, 0.7);
   z-index: -1;
 }
 
 .glitch-text::after {
   animation: glitch-anim 3s infinite reverse;
-  color: rgba(107, 70, 193, 0.8);
+  color: rgba(37, 51, 135, 0.7);
   z-index: -2;
 }
 
